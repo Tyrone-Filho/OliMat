@@ -1,11 +1,10 @@
 import "server-only";
 import { prisma } from "@/lib/prisma";
-import { lerSessao } from "@/lib/session";
-import { revalidatePath } from "next/cache";
 import { notFound, redirect } from "next/navigation";
+import { sessaoAtual } from "./queries";
 
 export async function exigirAdm() {
-     const sessao = await lerSessao();
+     const sessao = await sessaoAtual();
      if (!sessao) redirect("/");
      const adm = await prisma.user.findUnique({
           where: {

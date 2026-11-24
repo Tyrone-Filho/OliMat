@@ -2,15 +2,16 @@ import "server-only";
 import { PrismaClient } from "@/generated/prisma/client";
 import { PrismaMariaDb } from "@prisma/adapter-mariadb";
 
+const u = new URL(process.env.DATABASE_URL!);
+
 const adapter = new PrismaMariaDb({
-  host: process.env.DATABASE_HOST,
-  port: Number(process.env.DATABASE_PORT ?? 4000),
-  user: process.env.DATABASE_USER,
-  password: process.env.DATABASE_PASSWORD,
-  database: process.env.DATABASE_NAME,
-  ssl: { minVersion: "TLSv1.2", rejectUnauthorized: true },
+  host: u.hostname,
+  port: Number(u.port || 3306),
+  user: decodeURIComponent(u.username),
+  password: decodeURIComponent(u.password),
+  database: u.pathname.slice(1),
   connectionLimit: 5,
-  connectTimeout: 10000,
+  allowPublicKeyRetrieval: true,
 });
 
 const globalForPrisma = globalThis as unknown as { prisma?: PrismaClient };

@@ -1,4 +1,4 @@
-import { HeaderNoVoid } from "@/app/components/header";
+import { Header } from "@/app/components/header";
 import Loading from "@/app/components/loading";
 import { prisma } from "@/lib/prisma";
 import Link from "next/link";
@@ -14,6 +14,8 @@ async function ConteudoPagina({ params }: { params: Promise<{ user: string, UId:
      const usuarioPergunta = await prisma.user.findUnique({
           where: {
                id: idUser
+          }, omit: {
+               senha: true
           }
      })
      if (!usuarioPergunta) notFound();
@@ -26,7 +28,7 @@ async function ConteudoPagina({ params }: { params: Promise<{ user: string, UId:
      return (
           <div className="flex flex-col min-h-screen items-center w-dvw">
                <Link className="self-end" href={`/Adm/${usuario.usuario}`}>
-                    <HeaderNoVoid />
+                    <Header />
                </Link>
                <main className="flex flex-col min-h-80 items-center bg-beige m-2 w-[calc(100dvw-4rem)]  max-w-120 rounded-2xl gap-2">
                     <h1 className="text-black text-2xl">Perfil de {usuarioPergunta.usuario}</h1>

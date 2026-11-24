@@ -1,13 +1,13 @@
 "use server";
 
 import { prisma } from "@/lib/prisma";
-import { lerSessao } from "@/lib/session";
 import { notFound } from "next/navigation";
+import { sessaoAtual } from "./queries";
 
 type Dados = Record<string, string>;
 
 export async function salvarQuestoes(dados: Dados) {
-     const sessao = await lerSessao()
+     const sessao = await sessaoAtual()
      if (!sessao) return { erro: "Voce precisa estar logado" }
      const usuario = await prisma.user.findUnique({ where: { usuario: sessao.username } })
      if (!usuario) return notFound();

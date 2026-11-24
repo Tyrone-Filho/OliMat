@@ -1,22 +1,18 @@
-import { HeaderNoVoid } from "@/app/components/header";
+import Header from "@/app/components/header";
 import Loading from "@/app/components/loading";
 import { prisma } from "@/lib/prisma";
-import { lerSessao } from "@/lib/session";
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import { connection } from "next/server";
 import { Suspense } from "react";
 import ParaLatex from "@/app/processarstring";
+import { BuscarUser, sessaoAtual } from "@/lib/queries";
 async function ConteudoPergunta({ params }: { params: Promise<{ user: string, perguntaId: string }>; }) {
      await connection();
      const { user, perguntaId } = await params;
-     const sessao = await lerSessao();
+     const sessao = await sessaoAtual();
      if (!sessao) redirect("/");
-     const usuario = await prisma.user.findUnique({
-          where: {
-               usuario: user
-          }
-     });
+     const usuario = await BuscarUser(user)
      if (!usuario) notFound();
      const dono = sessao.username === user;
      if (!dono) notFound();
@@ -32,8 +28,8 @@ async function ConteudoPergunta({ params }: { params: Promise<{ user: string, pe
      const componets = [pergunta.enunciado, pergunta.q1, pergunta.q2, pergunta.q3, pergunta.r1, pergunta.r2, pergunta.r3]
      return (
           <main className="h-screen w-screen">
-               <Link href={`/users/${user}?etapa=instrucoes`}>
-                    <HeaderNoVoid />
+               <Link href={`/users/${user}`}>
+                    <Header user={usuario.usuario} />
                </Link>
                <section className="flex flex-col items-center bg-beige ml-2 mr-2 rounded-2xl pt-3 pb-5 gap-2">
                     {componets.map((c, i) =>

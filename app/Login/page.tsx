@@ -20,7 +20,10 @@ export default function Page() {
       setErro("Preencha todos os campos");
       return;
     }
-
+    if (!/^[A-Za-z0-9_.-]+$/.test(user)) {
+      setErro("Use apenas letras, números, _ . e -");
+      return;
+    }
     try {
 
       const dados = await Autenticar({ user, password });

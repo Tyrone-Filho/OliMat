@@ -1,5 +1,5 @@
 "use client";
-import { deletarPergunta } from "./acoes";
+import { deletarPergunta } from "../../lib/acoes";
 
 export default function BotaoExcluir({ perguntaid }: { perguntaid: number }) {
      function confirmar(perguntaid: number) {

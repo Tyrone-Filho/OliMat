@@ -27,8 +27,7 @@ export async function criarSessao(username: string) {
           maxAge: 60 * 60 * 24 * 7,
      });
 }
-
-export async function lerSessao() {
+export async function Ler() {
      const cookieStore = await cookies();
 
 
