@@ -1,4 +1,4 @@
-import { Header } from "@/app/components/header";
+import Header from "@/app/components/header";
 import Loading from "@/app/components/loading";
 import ParaLatex from "@/app/processarstring";
 import { prisma } from "@/lib/prisma";
@@ -58,7 +58,7 @@ async function ConteudoPagina({ params }: { params: Promise<{ user: string, UId:
      return (
           <div className="flex flex-col min-h-screen  w-dvw">
                <Link href={`/Adm/${usuario.usuario}`}>
-                    <Header />
+                    <Header user={usuario.usuario} />
                </Link>
                <main className="flex flex-col min-h-80 items-center self-center bg-beige m-2 w-[calc(100dvw-4rem)]  max-w-120 rounded-2xl gap-2">
                     <h1 className="text-black text-2xl">Perfil de {usuarioPergunta.usuario}</h1>

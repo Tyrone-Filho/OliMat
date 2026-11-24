@@ -9,6 +9,8 @@ export async function exigirAdm() {
      const adm = await prisma.user.findUnique({
           where: {
                usuario: sessao.username
+          }, omit: {
+               senha: true
           }
      });
      if (!adm || !adm.permissao) notFound();
