@@ -16,7 +16,7 @@ export default async function Perfil(user: { user: string }) {
      //Fazer Bio e ter como editar a bio
      //Fazer ter como mudar o nome
      return (
-          <div className="flex flex-col min-h-screen items-start w-full bg-white">
+          <div className="flex flex-col min-h-screen items-start w-full bg-white pb-20">
                <HeadePerfilTsx user={usuario.usuario} />
                <EditarNome atual={user.user} />
                <div className="flex flex-col items-center md:items-baseline md:text-center md:grid md:grid-cols-3 w-full mt-4 gap-8 md:gap-y-4 px-4">

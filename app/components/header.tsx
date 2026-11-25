@@ -21,10 +21,10 @@ export default function Header({ user }: { user: string }) {
      //Colocar Link para questoes
      return (
           <header className="flex flex-row w-full h-fit justify-between rounded-b-4xl pb-4">
-               <div className="relative">
+               <div className="relative pt-1">
                     <button
                          onClick={() => setAberto(!aberto)}
-                         className="w-10 h-10 flex flex-col justify-center
+                         className="w-10 h-10 flex flex-col justify-center cursor-pointer
                          items-center gap-1.5"
                          aria-label="Abrir menu"
                          aria-expanded={aberto}
@@ -41,18 +41,18 @@ export default function Header({ user }: { user: string }) {
 
                     <div className={`absolute left-4 top-12 w-48 bg-white text-black
                          rounded-xl shadow-lg p-3 flex flex-col gap-3
-                         transition-all duration-300
+                         transition-all duration-300 z-10
                          ${aberto
                               ? "opacity-100 scale-100 visible"
                               : "opacity-0 scale-95 invisible"
                          }`}
                     >
-                         <Link href="#">Membros</Link>
-                         <Link href="#">Questões</Link>
+                         <Link href="#" className="cursor-pointer">Membros</Link>
+                         <Link href="#" className="cursor-pointer">Questões</Link>
                     </div>
                </div>
                <Link href={`/users/${user}/perfil`}>
-                    <button className=" pr-2 pt-2 cursor-pointer pl-2 self-end">
+                    <button className=" pr-2 pt-1 cursor-pointer pl-2 self-end">
                          <Image width={512} loading="eager" height={512} alt="foto" src={perfil} className="w-12! h-12! rounded-full object-cover bg-white" />
                     </button>
                </Link>

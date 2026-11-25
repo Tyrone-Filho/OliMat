@@ -14,9 +14,9 @@ async function Conteudo({ params }: { params: Promise<{ user: string }>; }) {
   return (
     <div className="flex flex-col flex-1 min-h-screen itens-center font-sans bg-white">
       <Header user={usuario.usuario} />
-      <main className="flex flex-1 w-full flex-col itens-center mt-2 foreground gap-15">
+      <main className="flex flex-1 w-full flex-col items-center mt-2 foreground gap-15 ">
         <h1 className="text-2xl text-black self-center">Bem Vindo UserPlaceHolder</h1>
-        <div className="w-[calc(100dvw-4rem)] flex flex-col md:grid grid-cols-2 gap-4 ">
+        <div className="w-[calc(100dvw-4rem)] flex flex-col md:grid grid-cols-2 gap-4">
           <div className="flex flex-col flex-1 bg-[#c8d1d9] p-4 rounded-2xl">
             <p className="text-xl font-bold tracking-wider text-green-400 text-shadow-black text-shadow-lg self-center">Instrucoes</p>
             <div className="mt-2 mb-2">
@@ -66,9 +66,9 @@ async function Conteudo({ params }: { params: Promise<{ user: string }>; }) {
           </div>
         </div>
       </main>
-      <Link href={`${usuario.usuario}/criar`}>
-        <button className="select-none cursor-pointer mt-4 px-6 py-2 rounded-2xl bg-green-500 hover:bg-green-800
-                     focus:bg-green-800 :text-black mb-10" >Continuar</button>
+      <Link href={`${usuario.usuario}/criar`} className="justify-center flex flex-1 flex-row max-h-10 mt-8 mb-8 md:m-0">
+        <button className="select-none cursor-pointer px-6 py-2 rounded-2xl bg-green-500 hover:bg-green-800
+                     focus:bg-green-800 :text-black" >Continuar</button>
       </Link>
     </div>
   )

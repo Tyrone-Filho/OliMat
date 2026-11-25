@@ -3,6 +3,7 @@ import { ReactNode, useRef, useState } from "react"
 import { salvarQuestoes } from "@/lib/criar";
 import ParaLatex from "@/app/processarstring";
 import { useRouter } from "next/navigation";
+import Header from "@/app/components/header";
 
 export default function CriarQuestoes(user: { user: string }) {
      const [questoes, setQuestoes] = useState(1)
@@ -75,9 +76,10 @@ export default function CriarQuestoes(user: { user: string }) {
      }
      return (
           <div className="flex flex-col flex-1 min-h-screen font-sans bg-beige scrollbar-none">
-               <main className="flex flex-1 w-full flex-col items-center mt-2">
+               <main className="flex flex-1 w-full flex-col items-center">
+                    <Header user={user.user} />
                     <form className="mb-6 flex flex-col justify-center items-center" ref={formRef} onSubmit={enviar}>
-                         <div className="w-[calc(100dvw-2rem)] px-4 py-4 rounded-2xl max-w-120 bg-beige ">
+                         <div className="w-[calc(100dvw-2rem)] px-4 pb-4 rounded-2xl max-w-120 bg-beige ">
                               <div className="flex flex-col w-full gap-4 mb-4">
                                    {componentes}
                               </div>
