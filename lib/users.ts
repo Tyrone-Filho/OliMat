@@ -2,17 +2,21 @@
 import { prisma } from "@/lib/prisma";
 import { criarSessao } from "./session";
 export default async function Autenticar({ user, password }: { user: string, password: string }) {
-     const usuario = await prisma.user.findUnique({
-          where: { usuario: user },
-     });
-     if (!usuario) return null;
-     if (usuario.senha !== password) return null;
-     await criarSessao(usuario.usuario);
+     try {
+          const usuario = await prisma.user.findUnique({ where: { usuario: user } });
+          // ...resto igual
 
-     return {
-          username: usuario.usuario,
-          permissao: usuario.permissao
-     };
+          if (!usuario) return null;
+          if (usuario.senha !== password) return null;
+          await criarSessao(usuario.usuario);
+          return {
+               username: usuario.usuario,
+               permissao: usuario.permissao
+          };
+     } catch (e) {
+          console.error("Falha no login:", e);
+          return null;
+     }
 }
 export async function CriarUser({ user, password }: { user: string, password: string }) {
      const usuario = await prisma.user.findUnique({

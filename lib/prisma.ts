@@ -11,7 +11,8 @@ const adapter = new PrismaMariaDb({
   password: decodeURIComponent(u.password),
   database: u.pathname.slice(1),
   connectionLimit: 5,
-  allowPublicKeyRetrieval: true,
+  allowPublicKeyRetrieval: process.env.NODE_ENV !== "production",
+  ssl: process.env.NODE_ENV === "production" ? true : undefined,
 });
 
 const globalForPrisma = globalThis as unknown as { prisma?: PrismaClient };
