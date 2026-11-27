@@ -27,16 +27,14 @@ async function ConteudoPergunta({ params }: { params: Promise<{ user: string, pe
      if (!pergunta) redirect(`/users/${usuario.usuario}`)
      const componets = [pergunta.enunciado, pergunta.q1, pergunta.q2, pergunta.q3, pergunta.r1, pergunta.r2, pergunta.r3]
      return (
-          <main className="h-screen w-screen">
-               <Link href={`/users/${user}`}>
-                    <Header user={usuario.usuario} />
-               </Link>
-               <section className="flex flex-col items-center bg-beige ml-2 mr-2 rounded-2xl pt-3 pb-5 gap-2">
+          <main className="h-screen w-screen bg-white items-center flex flex-col gap-4 pt-2">
+               <Header user={usuario.usuario} />
+               <section className="flex flex-col items-center bg-cinza w-fit px-2 py-4 rounded-2xl pt-3 pb-5 gap-2">
                     {componets.map((c, i) =>
                     (
                          <section key={i} className={`flex flex-col gap-1 ${c ? "" : "hidden"}`}>
                               <span className="text-center font-bold tracking-widest text-black">{i === 0 ? "Enunciado" : `${i <= 3 ? `${i}ª Pergunta` : `Resposta da ${i % 3}ª`}`}</span>
-                              <div className="w-76 px-4 h-fit rounded-lg border border-black bg-zinc-300 text-black">
+                              <div className="w-76 px-4 h-fit rounded-lg border border-black bg-zinc-100 text-black">
                                    {c ? <ParaLatex texto={c} /> : <></>}
                               </div>
                          </section>

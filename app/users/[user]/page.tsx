@@ -17,7 +17,7 @@ async function Conteudo({ params }: { params: Promise<{ user: string }>; }) {
       <main className="flex flex-1 w-full flex-col items-center mt-2 foreground gap-15 ">
         <h1 className="text-2xl text-black self-center">Bem Vindo UserPlaceHolder</h1>
         <div className="w-[calc(100dvw-4rem)] flex flex-col md:grid grid-cols-2 gap-4">
-          <div className="flex flex-col flex-1 bg-[#c8d1d9] p-4 rounded-2xl">
+          <div className="flex flex-col flex-1 bg-cinza p-4 rounded-2xl">
             <p className="text-xl font-bold tracking-wider text-green-400 text-shadow-black text-shadow-lg self-center">Instrucoes</p>
             <div className="mt-2 mb-2">
               <p className="mb-4 text-lg tracking-wider text-black">Cada questão você podera colocar de 1 a 3 itens <br /> (todos discursivos)</p>
@@ -25,7 +25,7 @@ async function Conteudo({ params }: { params: Promise<{ user: string }>; }) {
               <p className=" text-lg tracking-wider text-black">Você precisara colocar o enunciado da questao</p>
             </div>
           </div>
-          <div className="flex flex-col flex-1 bg-[#c8d1d9] p-4 rounded-2xl">
+          <div className="flex flex-col flex-1 bg-cinza p-4 rounded-2xl">
             <p className="text-xl font-bold tracking-wider text-green-400 text-shadow-lg text-shadow-black self-center">Exemplos de Notação</p>
             <div className="mt-2 mb-2 text-black">
               <article className="flex relative">
@@ -66,7 +66,7 @@ async function Conteudo({ params }: { params: Promise<{ user: string }>; }) {
           </div>
         </div>
       </main>
-      <Link href={`${usuario.usuario}/criar`} className="justify-center flex flex-1 flex-row max-h-10 mt-8 mb-8 md:m-0">
+      <Link href={`${usuario.usuario}/criar`} className="justify-center flex flex-1 flex-row max-h-10 mt-8 mb-8 m-0">
         <button className="select-none cursor-pointer px-6 py-2 rounded-2xl bg-green-500 hover:bg-green-800
                      focus:bg-green-800 :text-black" >Continuar</button>
       </Link>

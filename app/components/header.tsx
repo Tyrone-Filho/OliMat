@@ -5,7 +5,7 @@ import { useState } from "react";
 import Link from "next/link";
 export function HeadePerfilTsx({ user }: { user: string }) {
      return (
-          <header className="flex flex-col w-full h-fit items-start bg-[#c8d1d9] rounded-b-4xl pb-32 relative">
+          <header className="flex flex-col w-full h-fit items-start bg-cinza rounded-b-4xl pb-32 relative">
                <button className=" pr-2 pt-2 cursor-pointer pl-2">
                     <Link href={`/users/${user}`}>
                          <i className="fa-solid fa-arrow-left text-2xl text-black" />

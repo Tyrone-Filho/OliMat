@@ -7,6 +7,7 @@ export default function Page() {
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
   const [erro, setErro] = useState("")
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
 
@@ -25,7 +26,7 @@ export default function Page() {
       return;
     }
     try {
-
+      setLoading(true);
       const dados = await Autenticar({ user, password });
 
 
@@ -34,6 +35,7 @@ export default function Page() {
         return;
       }
 
+      setLoading(false);
       router.push(
         dados.permissao
           ? `/Adm/${dados.username}`
@@ -41,6 +43,7 @@ export default function Page() {
       );
 
     } catch (error) {
+      setLoading(false);
       console.error("Erro no login:", error);
       setErro("Erro ao realizar login");
     }
@@ -75,7 +78,7 @@ export default function Page() {
               </label>
             </div>
             {erro && <p className="text-red-600">{erro}</p>}
-            <button type="submit" className={`dark:bg-green-600 text-white bg-[#1e3a5f] rounded-md p-2 text-center dark:hover:bg-green-800 ${erro ? "mt-2" : "mt-4"}
+            <button disabled={loading} type="submit" className={`dark:bg-green-600 text-white bg-[#1e3a5f] rounded-md p-2 text-center dark:hover:bg-green-800 ${erro ? "mt-2" : "mt-4"}
                  hover:cursor-pointer dark:focus:bg-green-800`}>Login</button>
           </form>
           <div className="relative">

@@ -9,6 +9,7 @@ export default function Page() {
      const [password, setPassword] = useState("");
      const [erro, setErro] = useState("")
      const router = useRouter();
+     const [loading, setLoading] = useState(false);
 
 
 
@@ -16,23 +17,29 @@ export default function Page() {
           e.preventDefault();
           setErro("");
 
+          setLoading(true);
           if (!user.trim() || !password.trim) {
                setErro("Preencha todos os campos")
+               setLoading(false);
                return;
           }
           if (user.at(0)?.toLocaleUpperCase() !== user.at(0)) {
                setErro("A Primeira Letra do Nome Deve Ser Maiúscula")
+               setLoading(false);
                return;
           }
           if (password.indexOf(" ") !== -1) {
                setErro("Senha não pode ter Espacos")
+               setLoading(false);
                return;
           }
           const erro = await CriarUser({ user, password })
           if (erro) {
                setErro(erro);
+               setLoading(false);
                return;
           }
+          setLoading(false);
           router.push(`users/${user}`)
 
      }
@@ -66,7 +73,7 @@ export default function Page() {
                                    </label>
                               </div>
                               {erro && <p className="text-red-600">{erro}</p>}
-                              <button type="submit" className={`dark:bg-green-600 text-white bg-[#1e3a5f] rounded-md p-2 text-center dark:hover:bg-green-800 
+                              <button disabled={loading} type="submit" className={`dark:bg-green-600 text-white bg-[#1e3a5f] rounded-md p-2 text-center dark:hover:bg-green-800 
                               ${erro ? "mt-2" : "mt-4"} hover:cursor-pointer dark:focus:bg-green-800 select-none`}>Criar Conta</button>
                          </form>
                          <div className="relative">

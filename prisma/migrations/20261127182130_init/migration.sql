@@ -19,6 +19,7 @@ CREATE TABLE `User` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `usuario` VARCHAR(255) NOT NULL,
     `senha` VARCHAR(255) NOT NULL,
+    `biografia` TEXT NULL,
     `permissao` BOOLEAN NOT NULL DEFAULT false,
 
     UNIQUE INDEX `User_usuario_key`(`usuario`),

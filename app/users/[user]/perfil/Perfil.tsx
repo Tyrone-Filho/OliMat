@@ -3,7 +3,7 @@ import { prisma } from "@/lib/prisma";
 import { BuscarUser } from "@/lib/queries";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import EditarNome from "./EditarNome";
+import EditarNome from "./Editar";
 
 export default async function Perfil(user: { user: string }) {
      const usuario = await BuscarUser(user.user)
@@ -18,7 +18,7 @@ export default async function Perfil(user: { user: string }) {
      return (
           <div className="flex flex-col min-h-screen items-start w-full bg-white pb-20">
                <HeadePerfilTsx user={usuario.usuario} />
-               <EditarNome atual={user.user} />
+               <EditarNome atual={user.user} tipo="Nome" />
                <div className="flex flex-col items-center md:items-baseline md:text-center md:grid md:grid-cols-3 w-full mt-4 gap-8 md:gap-y-4 px-4">
                     {perguntas.length > 0 ? perguntas.map((p) => (
                          <Link href={`/users/${usuario.usuario}/${p.id}`} key={p.id} className="overflow-hidden bg-[#c8d1d9] rounded-xl text-black
